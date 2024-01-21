@@ -38,29 +38,10 @@ function playRound(playerSelection,computerSelection){
     }
 }
 
-// pseudocode
-// FUNCTION game
-//  SET computerScore to 0
-//  SET playerScore to 0
-//  FOR 1 to 5 
-//      GET user input
-//      SET playerSelection to user input
-//      CALL playRound with playerSelection and getComputerchoice RETURNING string
-//      IF "YOU LOSE" 
-//          INCREMENT computerScore +1
-//      ENDIF 
-//      ELSE IF "YOU WIN" 
-//          INCREMENT playerScore +1
-//      ENDIF 
-//      DISPLAY computerSCore and playerScore
-//  ENDFOR
-// IF 
-// END FUNCTION
 
 function game(){
     let computerScore = 0;
     let playerScore = 0;
-    for (let i=0;i<5;i++){
         let playerAnswer = String(prompt("Enter scissors, rock or paper"))
         let win = playRound(playerAnswer,getComputerChoice());
         console.log(win)
@@ -80,4 +61,23 @@ function game(){
     else if (playerScore<computerScore){
         console.log("Human wins!")
     }
-}
+
+const score = document.querySelector(".results");
+const btnRock = document.querySelector(".rock");
+btnRock.addEventListener("click", () => {
+    score.textContent = playRound('rock',getComputerChoice())
+
+});
+
+const btnPaper = document.querySelector(".paper");
+btnPaper.addEventListener("click", () => {
+    score.textContent = playRound('paper',getComputerChoice())
+
+});
+
+const btnScissors = document.querySelector(".scissors");
+btnScissors.addEventListener("click", () => {
+    score.textContent = (playRound('scissors',getComputerChoice()))
+});
+
+
