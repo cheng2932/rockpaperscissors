@@ -38,46 +38,57 @@ function playRound(playerSelection,computerSelection){
     }
 }
 
+function winnerAnnoucement(playerScore,computerScore)
+{
+    if(playerScore==5){
+        alert(`Human score has ${playerScore} points and won!`)
+    }
+    else if(computerScore==5){
+        alert(`Computer score has ${computerScore} points and won!`)
+    }
+}
 
-function game(){
-    let computerScore = 0;
-    let playerScore = 0;
-        let playerAnswer = String(prompt("Enter scissors, rock or paper"))
-        let win = playRound(playerAnswer,getComputerChoice());
-        console.log(win)
-        if (win.includes("win") == true){
-            playerScore += 1
-            console.log(`Your score is ${playerScore}`)
-        }
-        else{
-            computerScore +=1
-            console.log(`Computer score is ${computerScore}`)
-        }
-       
+function game(winnerlog){
+    if (winnerlog.includes("win")){
+        HumanScore+=1;
+        gamescore.textContent = `${HumanScore} ${computerScore}` ;
     }
-    if (computerScore > playerScore){
-        console.log("Computer wins!")
+    else{
+        computerScore +=1
+        gamescore.textContent = `${HumanScore} ${computerScore}` ;
     }
-    else if (playerScore<computerScore){
-        console.log("Human wins!")
     }
+
+
+let HumanScore = 0;
+let computerScore = 0;
 
 const score = document.querySelector(".results");
-const btnRock = document.querySelector(".rock");
+const btnRock = document.querySelector("#rock");
 btnRock.addEventListener("click", () => {
-    score.textContent = playRound('rock',getComputerChoice())
-
+    score.textContent = playRound('rock',getComputerChoice());
+    game(score.textContent);
+    winnerAnnoucement(HumanScore,computerScore);
 });
 
 const btnPaper = document.querySelector(".paper");
 btnPaper.addEventListener("click", () => {
-    score.textContent = playRound('paper',getComputerChoice())
-
+    score.textContent = playRound('paper',getComputerChoice());
+    game(score.textContent);
+    winnerAnnoucement(HumanScore,computerScore);
 });
+
+
+const gamescore = document.querySelector(".score");
+gamescore.textContent = "hello world";
 
 const btnScissors = document.querySelector(".scissors");
 btnScissors.addEventListener("click", () => {
-    score.textContent = (playRound('scissors',getComputerChoice()))
+    score.textContent = (playRound('scissors',getComputerChoice()));
+    game(score.textContent);
+    winnerAnnoucement(HumanScore,computerScore);;
 });
+
+
 
 
